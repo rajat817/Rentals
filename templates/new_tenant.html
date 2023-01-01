@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    New Tenant
+{% endblock %}
+{% block head %}
+<style>
+    .wow{
+        display: grid;
+        place-items: center;
+        align-content: center;
+        min-height: 100vh;
+        background-image: url(/static/images/back3.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .form-control{
+         width: 250px;
+         height: 80px;
+      }
+</style>
+{% endblock %}
+
+{% block main %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+   {% for msg in messages %}
+      <div class="container-fluid text-center">
+         <h1 class="text-primary">{{ msg }}</h1>
+      </div>
+   {% endfor%}
+{% endif%}
+{% endwith%}
+<div class="wow bg-dark" style="padding:40px;">
+    <br>
+    <div class="container text-center">
+       <form action="/new_tenant", method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" id="username"  placeholder="Name" name = "new_tenant" required/>
+          </div><br>
+          <div class="form-group">
+            <input type="tel" class="form-control" id="username"  placeholder="Phone Number" name = "Phone_Number" pattern="[0-9]{5}[0-9]{5}" required/>
+          </div><br>
+          <div class="form-group">
+            <input type="number" class="form-control" id="username"  placeholder="Meter Reading" name = "meter_reading" min="1" required/>
+          </div><br>
+          <select class="form-select" name="per_unit">
+            <option selected disabled>Per unit</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select><br>
+          <div class="form-group">
+            <input type="number" class="form-control" id="username"  placeholder="Month Rental" name = "Monthly_Rental" min="1000" required/ >
+          </div><br>
+          <br>
+          <h2><button type="submit" class="btn btn-primary">Submit</button></h2>
+        </form>
+    </div>   
+ </div> 
+
+
+{% endblock %}

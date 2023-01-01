@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Remove Tenant
+{% endblock %}
+{% block head %}
+<style>
+    .wow{
+        display: grid;
+        place-items: center;
+        align-content: center;
+        min-height: 100vh;
+        background-image: url(/static/images/back3.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .form-control{
+         width: 250px;
+         height: 80px;
+      }
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="wow bg-dark" style="padding:40px;">
+    <br>
+    <div class="container text-center">
+       <form action="/remove_tenant", method="post">
+          <div class="form-group">
+            <select class="form-select" name="remove_tenant" required>
+              <option selected disabled>Select Tenant</option>
+              {% for user in users %}
+              <option value="{{ user.username }}">{{ user.username }}</option>
+              {% endfor %}
+            </select>
+          </div><br>
+          <h2><button type="submit" class="btn btn-primary">Remove</button></h2>
+        </form>
+    </div>   
+ </div> 
+
+
+{% endblock %}

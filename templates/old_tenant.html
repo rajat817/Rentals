@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Old Tenant
+{% endblock %}
+{% block head %}
+<style>
+    .wow{
+        display: grid;
+        place-items: center;
+        align-content: center;
+        min-height: 100vh;
+        background-image: url(/static/images/back3.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .form-control{
+         width: 250px;
+         height: 80px;
+      }
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="wow bg-dark" style="padding:40px;">
+    <br>
+    <div class="container text-center">
+       <form action="/old_tenant", method="post">
+          <div class="form-group">
+            <select class="form-select" name="tenant" required>
+              <option selected disabled value="">Select Tenant</option>
+              {% for user in users %}
+              <option value="{{ user.username }}">{{ user.username }}</option>
+              {% endfor %}
+            </select>
+          </div><br>
+          <div class="form-group">
+            <input type="number" class="form-control" id="username"  placeholder="New Meter Reading" name = "new_reading" min="1" required/>
+          </div><br>
+          <select class="form-select" name="per_unit">
+            <option selected disabled>Per unit</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select><br>
+          <div class="form-group">
+            <input type="number" class="form-control" id="username"  placeholder="New Montly Rent" name = "new_Monthly_rent" min="1000" required/>
+          </div><br>
+          <div class="form-group">
+            <input type="number" class="form-control" id="username"  placeholder="Rent Paid" name = "Rent_paid" min="1000" required/>
+          </div><br>
+          <div class="form-group">
+            <input type="number" class="form-control" id="username"  placeholder="Electric Bill Paid" name = "Elec_paid" min="1" required/>
+          </div><br>
+          <br>
+          <h2><button type="submit" class="btn btn-primary">Submit</button></h2>
+        </form>
+    </div>   
+ </div> 
+
+
+{% endblock %}
